@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShoppingApp.CoreLayer\ShoppingApp.CoreLayer.csproj" />
+    <ProjectReference Include="..\ShoppingApp.EntitiesLayer\ShoppingApp.EntitiesLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
+  </ItemGroup>
+
+</Project>
