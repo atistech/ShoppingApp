@@ -13,4 +13,9 @@
     <ProjectReference Include="..\ShoppingApp.BusinessLogicLayer\ShoppingApp.BusinessLogicLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
 </Project>

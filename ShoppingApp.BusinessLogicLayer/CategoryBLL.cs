@@ -15,7 +15,7 @@ namespace ShoppingApp.BusinessLogicLayer
             _categoryDAL = new CategoryDAL();
         }
 
-        public List<Category> GetCategoriesAll()
+        public List<Category> GetAllCategories()
         {
             return _categoryDAL.GetActive();
         }

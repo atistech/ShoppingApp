@@ -23,12 +23,7 @@ namespace ShoppingApp.PresentationLayer.Controllers
 
         public IActionResult Index()
         {
-            return View(categoryBLL.GetCategoriesAll());
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(categoryBLL.GetAllCategories());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
