@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ShoppingApp.BusinessLogicLayer;
 using ShoppingApp.PresentationLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace ShoppingApp.PresentationLayer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private CategoryBLL categoryBLL = new CategoryBLL();
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -20,7 +23,7 @@ namespace ShoppingApp.PresentationLayer.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(categoryBLL.GetCategoriesAll());
         }
 
         public IActionResult Privacy()

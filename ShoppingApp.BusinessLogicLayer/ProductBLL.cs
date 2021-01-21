@@ -15,7 +15,7 @@ namespace ShoppingApp.BusinessLogicLayer
             _productDAL = new ProductDAL();
         }
 
-        List<Product> GetProductsByCategoryID(Guid id)
+        public List<Product> GetProductsByCategoryID(Guid id)
         {
             return _productDAL.GetDefault(p => p.CategoryID == id);
         }

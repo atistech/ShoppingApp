@@ -1,0 +1,15 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>List</h1>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.ProductName</li>
+        <li>@item.ProductCode</li>
+        <li>@item.ProductPrice</li>
+    }
+</ul>

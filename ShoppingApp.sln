@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.EntitiesLayer", "ShoppingApp.EntitiesLayer\ShoppingApp.EntitiesLayer.csproj", "{0B00BB94-7741-4DED-9566-4729D00BE49B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.EntitiesLayer", "ShoppingApp.EntitiesLayer\ShoppingApp.EntitiesLayer.csproj", "{0B00BB94-7741-4DED-9566-4729D00BE49B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.CoreLayer", "ShoppingApp.CoreLayer\ShoppingApp.CoreLayer.csproj", "{2E36AA19-36EA-4612-9BB0-0923926E7962}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.CoreLayer", "ShoppingApp.CoreLayer\ShoppingApp.CoreLayer.csproj", "{2E36AA19-36EA-4612-9BB0-0923926E7962}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.DataAccessLayer", "ShoppingApp.DataAccessLayer\ShoppingApp.DataAccessLayer.csproj", "{F324DA70-3BEE-457E-9E2D-5508BABEB2F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.DataAccessLayer", "ShoppingApp.DataAccessLayer\ShoppingApp.DataAccessLayer.csproj", "{F324DA70-3BEE-457E-9E2D-5508BABEB2F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.PresentationLayer", "ShoppingApp.PresentationLayer\ShoppingApp.PresentationLayer.csproj", "{142BA72F-EA8A-4223-BB89-BA033B9A3BEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.PresentationLayer", "ShoppingApp.PresentationLayer\ShoppingApp.PresentationLayer.csproj", "{142BA72F-EA8A-4223-BB89-BA033B9A3BEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.BusinessLogicLayer", "ShoppingApp.BusinessLogicLayer\ShoppingApp.BusinessLogicLayer.csproj", "{746ACEEB-83C8-4E5E-8E5F-7424DAB96C78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.BusinessLogicLayer", "ShoppingApp.BusinessLogicLayer\ShoppingApp.BusinessLogicLayer.csproj", "{746ACEEB-83C8-4E5E-8E5F-7424DAB96C78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

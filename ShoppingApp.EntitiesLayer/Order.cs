@@ -10,6 +10,8 @@ namespace ShoppingApp.EntitiesLayer
         public string OrderDescription { get; set; }
         public DateTime OrderDate { get; set; }
 
+        public ICollection<OrderDetail> OrderDetails { get; set; }
+
         public Guid UserID { get; set; }
         public User User { get; set; }
     }
