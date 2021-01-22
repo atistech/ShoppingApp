@@ -27,10 +27,41 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                <li><a href="/User/Login"><i class="fa fa-lock"></i> Login</a></li>
+                                @if (User.Identity.Name != null)
+                                {
+                                    <li>
+                                        <a href="">
+                                            <i class="fa fa-shopping-cart"></i> Sepetim
+                                            <span class="badge badge-success">0</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <i class="fa fa-credit-card"></i> Siparişlerim
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="username"></a>
+                                    </li>
+                                    <li>
+                                        <a href="/User/Logout">
+                                            <i class="fa fa-sign-out"></i> Çıkış Yap
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="/User/Login">
+                                            <i class="fa fa-lock"></i> Giriş Yap
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/User/Register">
+                                            <i class="fa fa-lock"></i> Üye Ol
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -55,6 +86,18 @@
     <script src="~/js/price-range.js"></script>
     <script src="~/js/jquery.prettyPhoto.js"></script>
     <script src="~/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            var icon_html = "<i class='fa fa-user'></i>";
+            $.ajax({
+                type: "GET",
+                url: "/User/GetCurrentUser",
+                success: function (response) {
+                    $("#username").html(icon_html + response.name);
+                }
+            });
+        });
+     </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

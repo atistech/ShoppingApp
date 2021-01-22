@@ -54,10 +54,20 @@
                                         <img src="@src" alt="" />
                                         <h2>@product.ProductPrice TL</h2>
                                         <p>@product.ProductName</p>
-                                        <button class="btn btn-default add-to-cart" 
-                                            value="@product.ID">
-                                            <i class="fa fa-shopping-cart"></i>Sepete Ekle
-                                        </button>
+                                        @if (User.Identity.Name != null)
+                                        {
+                                            <button class="btn btn-default add-to-cart"
+                                                    value="@product.ID">
+                                                <i class="fa fa-shopping-cart"></i>Sepete Ekle
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-default add-to-cart"
+                                                    value="@product.ID" disabled>
+                                                <i class="fa fa-shopping-cart"></i>Sepete Ekle
+                                            </button>
+                                        }
                                     </div>
                                 </div>
                             </div>
