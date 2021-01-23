@@ -21,37 +21,40 @@
                 <ul class="navbar-nav ml-auto">
                     @if (User.Identity.Name != null)
                     {
-                        <li class="nav-item active">
+                        <li class="nav-item active mr-1">
                             <a class="nav-link" href="/Order/List/@User.Identity.Name">
                                 <i class="fa fa-credit-card"></i> Siparişlerim
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item active mr-1">
                             <a class="nav-link" id="username"></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/User/Logout">
+                            <a class="nav-link btn btn-danger" 
+                               href="/User/Logout">
                                 <i class="fa fa-sign-out"></i> Çıkış Yap
                             </a>
                         </li>
                     }
                     else
                     {
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/User/Login">
+                        <li class="nav-item active mr-1">
+                            <a class="nav-link btn btn-success" 
+                               href="/User/Login">
                                 <i class="fa fa-sign-in"></i> Giriş Yap
                             </a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/User/Register">
+                        <li class="nav-item active mr-1">
+                            <a class="nav-link btn btn-info" 
+                               href="/User/Register">
                                 <i class="fa fa-pencil-square-o"></i> Üye Ol
                             </a>
                         </li>
                     }
                     <li class="nav-item active">
-                        <a class="nav-link" href="/Cart/Cart">
+                        <a class="nav-link btn btn-warning" href="/Cart/Cart">
                             <i class="fa fa-shopping-cart"></i> Sepetim
-                            <span class="badge badge-warning h5 p-2" id="cart-count"></span>
+                            <span class="badge back-color h5 p-2" id="cart-count"></span>
                         </a>
                     </li>
                 </ul>

@@ -1,8 +1,39 @@
 ﻿@model List<OrderDetail>
 @{
-    ViewData["Title"] = "OrderDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>OrderDetails</h1>
-
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        string src = "/images/" + product.Product.ProductCode + ".png";
+                        <tr>
+                            <td class="table-content-center">
+                                <img class="img-thumbnail" src="@src" height="150" width="150" />
+                            </td>
+                            <td class="table-content-center">
+                                @product.Product.ProductName
+                            </td>
+                            <td class="table-content-center">
+                                @product.Product.ProductPrice
+                            </td>
+                            <td class="table-content-center">
+                                @product.Quantity
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="table-content-center"></td>
+                        <td class="table-content-center"></td>
+                        <td class="table-content-center"></td>
+                        <td class="table-content-center"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
