@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShoppingApp.PresentationLayer.Models
 {
-    public class ProductListVM
+    public class CardVM
     {
-        public List<Category> categories { get; set; }
-        public List<Product> products { get; set; }
+        public List<Product> Products { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

@@ -6,11 +6,12 @@
     <title>SHOP ELECTRONICS</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/Style.css" rel="stylesheet">
 </head>
 <body>
     <header style="background-color: #2cb8ef;">
-        <nav class="container navbar navbar-expand-lg navbar-dark" style="background-color: #2cb8ef;">
-            <a class="navbar-brand" href="#">
+        <nav class="container navbar navbar-expand-lg navbar-dark back-color">
+            <a class="navbar-brand" href="/Product/List">
                 <img src="~/images/logo.png" width="200" height="50" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +22,7 @@
                     @if (User.Identity.Name != null)
                     {
                         <li class="nav-item active">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="/Order/List/@User.Identity.Name">
                                 <i class="fa fa-credit-card"></i> Siparişlerim
                             </a>
                         </li>
@@ -38,19 +39,19 @@
                     {
                         <li class="nav-item active">
                             <a class="nav-link" href="/User/Login">
-                                <i class="fa fa-lock"></i> Giriş Yap
+                                <i class="fa fa-sign-in"></i> Giriş Yap
                             </a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/User/Register">
-                                <i class="fa fa-lock"></i> Üye Ol
+                                <i class="fa fa-pencil-square-o"></i> Üye Ol
                             </a>
                         </li>
                     }
                     <li class="nav-item active">
                         <a class="nav-link" href="/Cart/Cart">
                             <i class="fa fa-shopping-cart"></i> Sepetim
-                            <span class="badge badge-success" id="cart-count"></span>
+                            <span class="badge badge-warning h5 p-2" id="cart-count"></span>
                         </a>
                     </li>
                 </ul>
@@ -63,7 +64,7 @@
     <br /><br />
 
     <!-- Footer -->
-    <footer class="py-3 fixed-bottom" style="background-color: #2cb8ef;">
+    <footer class="back-color py-3 fixed-bottom ">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Shop Electronics  2020</p>
         </div>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.BusinessLogicLayer;
 using ShoppingApp.EntitiesLayer;
+using ShoppingApp.PresentationLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace ShoppingApp.PresentationLayer.Controllers
         [HttpGet]
         public IActionResult Cart()
         {
+            CardVM vm = new CardVM();
             List<Product> list = new List<Product>();
             foreach (var item in Request.Cookies)
             {
@@ -22,10 +24,14 @@ namespace ShoppingApp.PresentationLayer.Controllers
                 {
                     Product p = _productBLL.GetProductByID(new Guid(item.Value));
                     if (p != null)
+                    {
                         list.Add(p);
+                        vm.TotalPrice += p.ProductPrice;
+                    }
                 }
             }
-            return View(list);
+            vm.Products = list;
+            return View(vm);
         }
 
         [HttpGet]
@@ -38,10 +44,10 @@ namespace ShoppingApp.PresentationLayer.Controllers
             {
                 int new_order = CartItemCounter() + 1;
                 Response.Cookies.Append("CartItem-" + new_order, id.ToString());
-                return Json(new { success = true });
+                return RedirectToAction("Cart");
             }
             else
-                return Json(new { success = false });
+                return RedirectToAction("Cart");
         }
 
         [HttpGet]
@@ -53,12 +59,12 @@ namespace ShoppingApp.PresentationLayer.Controllers
             if (!cookie.Equals(default(KeyValuePair<string, string>)))
             {
                 Response.Cookies.Delete(cookie.Key);
-                return Json(new { success = true });
+                return RedirectToAction("Cart");
             }
             //cookie is default value
             else
             {
-                return Json(new { success = false });
+                return RedirectToAction("Cart");
             }
         }
 

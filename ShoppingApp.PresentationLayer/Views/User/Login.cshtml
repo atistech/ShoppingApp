@@ -9,11 +9,14 @@
         <div class="col p-5 text-light text-center" style=" background-color: #2cb8ef;">
             <form method="post" action="/User/Login">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Kullanıcı Adı</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="UserName">
+                    <input type="text" class="form-control" placeholder="Kullanıcı Adı" name="UserName">
                 </div>
                 <br />
-                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Şifre" name="Password">
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Giriş Yap</button>
             </form>
         </div>
     </div>

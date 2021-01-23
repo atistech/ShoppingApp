@@ -1,0 +1,23 @@
+﻿@model List<OrderListVM>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="table-content-center">@item.OrderDate</td>
+                            <td class="table-content-center">@item.OrderDescription</td>
+                            <td class="table-content-center"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

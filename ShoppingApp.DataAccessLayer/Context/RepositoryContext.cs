@@ -35,8 +35,6 @@ namespace ShoppingApp.DataAccessLayer.Context
                 .HasOne(d => d.Product)
                 .WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.ProductID);
-
-            //new SeedSampleData();
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
