@@ -4,91 +4,76 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SHOP ELECTRONICS</title>
-    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/css/prettyPhoto.css" rel="stylesheet">
-    <link href="~/css/price-range.css" rel="stylesheet">
-    <link href="~/css/animate.css" rel="stylesheet">
-    <link href="~/css/main.css" rel="stylesheet">
-    <link href="~/css/responsive.css" rel="stylesheet">
 </head>
 <body>
-    <header id="header">
-        <!--header-->
-        <div class="header-middle">
-            <!--header-middle-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="logo pull-left">
-                            <a href="index.html"><img src="~/images/logo.png" alt="" /></a>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="shop-menu pull-right">
-                            <ul class="nav navbar-nav">
-                                @if (User.Identity.Name != null)
-                                {
-                                    <li>
-                                        <a href="">
-                                            <i class="fa fa-shopping-cart"></i> Sepetim
-                                            <span class="badge badge-success">0</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <i class="fa fa-credit-card"></i> Siparişlerim
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a id="username"></a>
-                                    </li>
-                                    <li>
-                                        <a href="/User/Logout">
-                                            <i class="fa fa-sign-out"></i> Çıkış Yap
-                                        </a>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li>
-                                        <a href="/User/Login">
-                                            <i class="fa fa-lock"></i> Giriş Yap
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/User/Register">
-                                            <i class="fa fa-lock"></i> Üye Ol
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    <header style="background-color: #2cb8ef;">
+        <nav class="container navbar navbar-expand-lg navbar-dark" style="background-color: #2cb8ef;">
+            <a class="navbar-brand" href="#">
+                <img src="~/images/logo.png" width="200" height="50" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    @if (User.Identity.Name != null)
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link" href="">
+                                <i class="fa fa-credit-card"></i> Siparişlerim
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" id="username"></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/User/Logout">
+                                <i class="fa fa-sign-out"></i> Çıkış Yap
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/User/Login">
+                                <i class="fa fa-lock"></i> Giriş Yap
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/User/Register">
+                                <i class="fa fa-lock"></i> Üye Ol
+                            </a>
+                        </li>
+                    }
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Cart/Cart">
+                            <i class="fa fa-shopping-cart"></i> Sepetim
+                            <span class="badge badge-success" id="cart-count"></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </div><!--/header-middle-->
-        <br><br>
-    </header><!--/header-->
+        </nav>
+    </header>
     <!-- Page Content -->
+    <br /><br />
     @RenderBody()
+    <br /><br />
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark fixed-bottom">
+    <footer class="py-3 fixed-bottom" style="background-color: #2cb8ef;">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Electronic Shop 2020</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Shop Electronics  2020</p>
         </div>
     </footer>
 
-    <script src="~/js/jquery.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/jquery.scrollUp.min.js"></script>
-    <script src="~/js/price-range.js"></script>
-    <script src="~/js/jquery.prettyPhoto.js"></script>
-    <script src="~/js/main.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
-            var icon_html = "<i class='fa fa-user'></i>";
+            var icon_html = "<i class='fa fa-user'></i> ";
             $.ajax({
                 type: "GET",
                 url: "/User/GetCurrentUser",
@@ -96,8 +81,15 @@
                     $("#username").html(icon_html + response.name);
                 }
             });
+            $.ajax({
+                type: "GET",
+                url: "/Cart/CartCount",
+                success: function (response) {
+                    $("#cart-count").html(response.count);
+                }
+            });
         });
-     </script>
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

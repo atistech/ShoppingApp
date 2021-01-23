@@ -4,78 +4,81 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="left-sidebar">
-                    <h2>Kategoriler</h2>
-                    <div class="panel-group category-products" id="accordian">
-                        <!--category-products-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a href="/Product/List">
-                                        Hepsi
-                                    </a>
-                                </h4>
-                            </div>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <ul class="list-group">
+                <li class="list-group-item"><a class="category text-dark" href="/Product/List">Hepsi</a></li>
+                @foreach (var category in Model.categories)
+                {
+                    <li class="list-group-item">
+                        <a class="category text-dark" href="/Product/ListByCategory/@category.ID">
+                            @category.CategoryName
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
 
-                        @foreach (var category in Model.categories)
-                        {
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a href="/Product/ListByCategory/@category.ID">
-                                            @category.CategoryName
-                                        </a>
-                                    </h4>
-                                </div>
-                            </div>
-                        }
-                    </div><!--/category-products-->
-
-                </div>
-            </div>
-
-            <div class="col-sm-9 padding-right">
-                <div class="features_items">
-                    <!--features_items-->
-                    <h2 class="title text-center">Ürünler</h2>
-
-                    @foreach (var product in Model.products)
-                    {
-                        string src = "/images/" + @product.ProductCode + ".png";
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="@src" alt="" />
-                                        <h2>@product.ProductPrice TL</h2>
-                                        <p>@product.ProductName</p>
-                                        @if (User.Identity.Name != null)
-                                        {
-                                            <button class="btn btn-default add-to-cart"
-                                                    value="@product.ID">
-                                                <i class="fa fa-shopping-cart"></i>Sepete Ekle
-                                            </button>
-                                        }
-                                        else
-                                        {
-                                            <button class="btn btn-default add-to-cart"
-                                                    value="@product.ID" disabled>
-                                                <i class="fa fa-shopping-cart"></i>Sepete Ekle
-                                            </button>
-                                        }
-                                    </div>
+        <div class="col-9">
+            <div class="row">
+                @foreach (var product in Model.products)
+                {
+                    string src = "/images/" + @product.ProductCode + ".png";
+                    <div class="col-4">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="@src" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">@product.ProductPrice TL</h5>
+                                <p class="card-text">@product.ProductName</p>
+                                <div class="text-center">
+                                    <button class="btn btn-primary" value="@product.ID">
+                                        <i class="fa fa-shopping-cart"></i> Sepete Ekle
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    }
-
-                </div><!--features_items-->
+                    </div>
+                }
             </div>
         </div>
     </div>
-</section>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ürün Sepete Eklenmiştir.</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(":button").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Cart/AddToCart/" + $(this).val(),
+                    success: function (response) {
+                        $('#myModal').modal('show');
+                        setTimeout(function () {
+                            $('#myModal').modal('hide');
+                        }, 1000);
+                    },
+                    error: function (response) {
+                        alert("Ürün Sepete Eklenemedi!!");
+                    }
+                });
+            });
+
+            $(".category").click(function () {
+                $(".category").css('backgroundColor', 'white');
+                $(this).css('backgroundColor', 'black');
+            });
+
+        });
+    </script>
+}

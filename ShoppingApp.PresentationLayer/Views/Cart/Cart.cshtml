@@ -1,0 +1,31 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        string src = "/images/" + item.ProductCode + ".png";
+                        <tr>
+                            <td><img class="img-thumbnail" src="@src" height="200" width="200" /></td>
+                            <td>
+                                @item.ProductName
+                                <br />
+                                @item.ProductPrice
+
+                            </td>
+                            <td>Kaldir</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

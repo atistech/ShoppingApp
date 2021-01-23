@@ -4,9 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form method="post" action="#">
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="Enter email" name="UserName">
+<div class="container w-25">
+    <div class="row">
+        <div class="col p-5 text-light text-center" style=" background-color: #2cb8ef;">
+            <form method="post" action="/User/Login">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Kullanıcı Adı</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="UserName">
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</div>

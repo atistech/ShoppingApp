@@ -24,5 +24,10 @@ namespace ShoppingApp.BusinessLogicLayer
         {
             return _productDAL.GetDefault(p => p.CategoryID == id);
         }
+
+        public Product GetProductByID(Guid id)
+        {
+            return _productDAL.GetByID(id);
+        }
     }
 }

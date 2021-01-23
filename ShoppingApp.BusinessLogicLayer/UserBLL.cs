@@ -28,5 +28,10 @@ namespace ShoppingApp.BusinessLogicLayer
             else
                 return null;
         }
+
+        public void Register(User user)
+        {
+            _userDAL.Add(user);
+        }
     }
 }
