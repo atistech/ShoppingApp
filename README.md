@@ -3,7 +3,7 @@ Microsoft SQL Server, Entity Framework Core, .NET Core, ASP.NET Core MVC, Bootst
 
 ## Enterprise Layered Architecture
 
-CoreLayer : Includes interfaces, base classes
+CoreLayer : Includes interfaces and base classes required for layers
 
 EntitiesLayer : 
 
