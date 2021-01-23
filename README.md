@@ -1,7 +1,7 @@
 # ShoppingApp
 Microsoft SQL Server, Entity Framework Core, .NET Core, ASP.NET Core MVC, Bootstrap, JQuery
 
-Enterprise Layered Architecture
+## Enterprise Layered Architecture
 
 CoreLayer : Includes interfaces, base classes
 
