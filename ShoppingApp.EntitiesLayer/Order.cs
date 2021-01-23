@@ -9,6 +9,7 @@ namespace ShoppingApp.EntitiesLayer
     {
         public string OrderDescription { get; set; }
         public DateTime OrderDate { get; set; }
+        public decimal OrderPrice { get; set; }
 
         public ICollection<OrderDetail> OrderDetails { get; set; }
 

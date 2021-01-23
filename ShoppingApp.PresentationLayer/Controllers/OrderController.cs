@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.BusinessLogicLayer;
+using ShoppingApp.DataAccessLayer.Concrete;
 using ShoppingApp.EntitiesLayer;
 using ShoppingApp.PresentationLayer.Models;
 using System;
@@ -12,21 +13,22 @@ namespace ShoppingApp.PresentationLayer.Controllers
     public class OrderController : Controller
     {
         private OrderBLL _orderBLL = new OrderBLL();
+        private OrderDetailBLL _orderDetailBLL = new OrderDetailBLL();
+        private ProductBLL _productBLL = new ProductBLL();
 
         public IActionResult List(Guid id)
         {
-            List<Order> list = _orderBLL.GetOrdersByUserID(id);
+            return View(_orderBLL.GetOrdersByUserID(id));
+        }
 
-            List<OrderListVM> vm = new List<OrderListVM>();
-            if(list.Count != 0)
-                foreach (var item in list)
-                    vm.Add(new OrderListVM{
-                        ID = item.ID,
-                        OrderDescription = item.OrderDescription,
-                        OrderDate = item.OrderDate
-                    });
-            
-            return View(vm);
+        /*public IActionResult AddOrder()
+        {
+
+        }*/
+
+        public IActionResult OrderDetails(Guid id)
+        {
+            return View(_orderDetailBLL.GetOrderDetailsByOrderID(id));
         }
     }
 }

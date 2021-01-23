@@ -10,5 +10,6 @@ namespace ShoppingApp.PresentationLayer.Models
         public Guid ID { get; set; }
         public string OrderDescription { get; set; }
         public DateTime OrderDate { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using ShoppingApp.DataAccessLayer.Context;
 namespace ShoppingApp.DataAccessLayer.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20210121001559_Migration1")]
-    partial class Migration1
+    [Migration("20210123160728_DBMigration1")]
+    partial class DBMigration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,9 @@ namespace ShoppingApp.DataAccessLayer.Migrations
 
                     b.Property<string>("OrderDescription")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("OrderPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -134,6 +137,9 @@ namespace ShoppingApp.DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")

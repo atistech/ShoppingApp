@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingApp.CoreLayer.EntitiesLayer;
+using ShoppingApp.DataAccessLayer.Context;
 using ShoppingApp.EntitiesLayer;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ShoppingApp.DataAccessLayer.Context
+namespace ShoppingApp.BusinessLogicLayer
 {
     public class SeedSampleData
     {
@@ -17,12 +18,10 @@ namespace ShoppingApp.DataAccessLayer.Context
             user1.ID = Guid.NewGuid();
             user1.Status = Status.Active;
             user1.UserName = "blue.atakan";
+            user1.Password = "35933593";
             user1.FirstName = "Atakan";
             user1.LastName = "Senturk";
             user1.Age = 23;
-
-            _context.Users.Add(user1);
-            _context.SaveChanges();
             #endregion
 
             #region Sample Category Data
@@ -37,14 +36,18 @@ namespace ShoppingApp.DataAccessLayer.Context
                     CategoryName = category_names[i]
                 };
             }
-            _context.Categories.AddRange(categories);
-            _context.SaveChanges();
             #endregion
 
             #region Sample Product Data
             string[] product_names = { "LG G4", "Huawei", "Apple IPhone",
                 "Lenovo Laptop", "Asus Laptop", "Casper PC", 
                 "Arçelik TV", "Vestel TV", "Samsung Smart TV"};
+            int[] product_prices = { 1500, 3000, 4500,
+                5000, 7000, 3500,
+                1500, 2500, 5500};
+            int[] product_codes = { 654321, 654321, 654321,
+                123456, 123456, 123456,
+                0, 0, 0};
             Product[] products = new Product[9];
             int category_index = 0;
             for (int i = 0; i < 9; i++)
@@ -54,8 +57,8 @@ namespace ShoppingApp.DataAccessLayer.Context
                     ID = Guid.NewGuid(),
                     Status = Status.Active,
                     ProductName = product_names[i],
-                    ProductCode = "Atakan",
-                    ProductPrice = 5000,
+                    ProductCode = product_codes[i].ToString(),
+                    ProductPrice = product_prices[i],
                     CategoryID = categories[category_index].ID,
                     Category = categories[category_index],
                 };
@@ -63,9 +66,6 @@ namespace ShoppingApp.DataAccessLayer.Context
                 if (i == 2 || i == 5)
                     category_index++;
             }
-            
-            _context.Products.AddRange(products);
-            _context.SaveChanges();
             #endregion
 
             #region Sample Order Data
@@ -76,9 +76,7 @@ namespace ShoppingApp.DataAccessLayer.Context
             order1.OrderDate = new DateTime(2021, 1, 18);
             order1.UserID = user1.ID;
             order1.User = user1;
-
-            _context.Orders.Add(order1);
-            _context.SaveChanges();
+            order1.OrderPrice = 4500;
             #endregion
 
             #region Sample OrderDetail Data
@@ -97,10 +95,14 @@ namespace ShoppingApp.DataAccessLayer.Context
                     Product = products[0]
                 };
             }
+            #endregion
 
+            _context.Users.Add(user1);
+            _context.Categories.AddRange(categories);
+            _context.Products.AddRange(products);
+            _context.Orders.Add(order1);
             _context.OrderDetails.AddRange(order_details);
             _context.SaveChanges();
-            #endregion
         }
     }
 }

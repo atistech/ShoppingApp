@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ShoppingApp.BusinessLogicLayer
 {
-    class OrderDetailBLL
+    public class OrderDetailBLL
     {
         private OrderDetailDAL _orderDetailDAL;
 
@@ -14,10 +14,12 @@ namespace ShoppingApp.BusinessLogicLayer
         {
             _orderDetailDAL = new OrderDetailDAL();
         }
-        /*
-        public OrderDetail GetOrderDetailByID()
+        
+        public List<OrderDetail> GetOrderDetailsByOrderID(Guid id)
         {
-
-        }*/
+            List<OrderDetail> list = new List<OrderDetail>();
+            list = _orderDetailDAL.GetDefault(d => d.OrderID == id );
+            return list;
+        }
     }
 }

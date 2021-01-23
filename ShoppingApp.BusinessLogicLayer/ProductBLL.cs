@@ -17,6 +17,7 @@ namespace ShoppingApp.BusinessLogicLayer
 
         public List<Product> GetAllProducts()
         {
+            //SeedSampleData d = new SeedSampleData();
             return _productDAL.GetActive();
         }
 

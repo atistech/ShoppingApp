@@ -1,4 +1,4 @@
-﻿@model List<OrderListVM>
+﻿@model List<Order>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,14 +7,34 @@
     <div class="row">
         <div class="col">
             <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table-content-center" scope="col">Sipariş Tarihi</th>
+                        <th class="table-content-center" scope="col">Sipariş Açıklaması</th>
+                        <th class="table-content-center" scope="col">Sipariş Tutarı</th>
+                        <th class="table-content-center" scope="col"></th>
+                    </tr>
+                </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td class="table-content-center">@item.OrderDate</td>
-                            <td class="table-content-center">@item.OrderDescription</td>
-                            <td class="table-content-center"></td>
-                        </tr>
+                    <tr>
+                        <td class="table-content-center">
+                            @item.OrderDate
+                        </td>
+                        <td class="table-content-center">
+                            @item.OrderDescription
+                        </td>
+                        <td class="table-content-center">
+                            @item.OrderPrice
+                        </td>
+                        <td class="table-content-center">
+                            <a class="btn btn-primary"
+                               href="/Order/OrderDetails/@item.ID">
+                                Sipariş Detayı
+                            </a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
