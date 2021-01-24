@@ -31,11 +31,33 @@ namespace ShoppingApp.PresentationLayer.Controllers
             order1.ID = Guid.NewGuid();
             order1.Status = Status.Active;
             order1.OrderDescription = "Siparişlerim zamanında elime ulaşmıştır. Teşekkürler...";
-            order1.OrderDate = new DateTime(2021, 1, 18);
+            order1.OrderDate = DateTime.UtcNow;
             order1.UserID = new Guid(userIdentity.Name);
-            //order1.User = user1;
-            order1.OrderPrice = 9000;
-            //_orderBLL.
+            order1.OrderPrice = vm.TotalPrice;
+            _orderBLL.AddOrder(order1);
+
+            for (int i = 0; i < vm.ProductIDs.Count; i++)
+            {
+                Product product = _productBLL
+                    .GetProductByID(new Guid(vm.ProductIDs[i]));
+                OrderDetail orderDetail = new OrderDetail()
+                {
+                    ID = Guid.NewGuid(),
+                    Status = Status.Active,
+                    OrderPrice = vm.Quantities[i] * product.ProductPrice,
+                    Quantity = vm.Quantities[i],
+                    OrderID = order1.ID,
+                    ProductID = product.ID,
+                };
+                _orderDetailBLL.AddOrderDetail(orderDetail);
+
+                var cookie = Request.Cookies.FirstOrDefault(c => c.Value == vm.ProductIDs[i]);
+                if (!cookie.Equals(default(KeyValuePair<string, string>)))
+                {
+                    Response.Cookies.Delete(cookie.Key);
+                }
+            }
+
             return RedirectToAction("Cart", "Cart");
         }
 

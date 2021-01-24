@@ -24,5 +24,10 @@ namespace ShoppingApp.BusinessLogicLayer
         {
             return _orderDAL.GetByID(id);
         }
+
+        public void AddOrder(Order order)
+        {
+            _orderDAL.Add(order);
+        }
     }
 }

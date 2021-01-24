@@ -7,7 +7,8 @@ namespace ShoppingApp.PresentationLayer.Models
 {
     public class CartToOrderVM
     {
-        public List<Guid> ProductIDs { get; set; }
+        public List<string> ProductIDs { get; set; }
+        public List<int> Quantities { get; set; }
         public decimal TotalPrice { get; set; }
     }
 }

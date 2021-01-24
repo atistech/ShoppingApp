@@ -19,5 +19,10 @@ namespace ShoppingApp.BusinessLogicLayer
         {
             return _orderDetailDAL.GetDefault(d => d.OrderID == id );
         }
+
+        public void AddOrderDetail(OrderDetail orderDetail)
+        {
+            _orderDetailDAL.Add(orderDetail);
+        }
     }
 }

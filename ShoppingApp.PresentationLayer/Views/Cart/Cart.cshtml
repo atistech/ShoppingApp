@@ -7,11 +7,15 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form>
-                <table class="table">
+            <form method="post" action="/Order/AddOrder">
+                <table class="table table-bordered">
                     <tbody>
+                        @{
+                            var counter = 0;
+                        }
                         @foreach (var product in Model.Products)
                         {
+
                             string src = "/images/" + product.ProductCode + ".png";
                             <tr>
                                 <td class="table-content-center">
@@ -20,9 +24,15 @@
                                 </td>
                                 <td class="table-content-center">
                                     @product.ProductName
+                                    <input type="hidden" name="ProductIDs[@counter]"
+                                           value="@product.ID">
                                 </td>
                                 <td class="table-content-center">
                                     @product.ProductPrice
+                                </td>
+                                <td class="table-content-center">
+                                    <input type="number" class="w-25"
+                                           name="Quantities[@counter]" value="1">
                                 </td>
                                 <td class="table-content-center">
                                     <a href="/Cart/RemoveFromCart/@product.ID"
@@ -32,31 +42,44 @@
                                     </a>
                                 </td>
                             </tr>
+                            counter++;
                         }
+                    </tbody>
+                </table>
 
-                        @if (User.Identity.Name != null)
-                        {
+                @if (User.Identity.Name != null)
+                {
+                    <table class="table table-bordered">
+                        <tbody>
                             <tr>
                                 <td class="table-content-center">
                                     <a href="/Product/List" class="btn btn-primary">
-                                        <i class="fa fa-arrow-left"></i> Alışverişe Devam Et
+                                        <i class="fa fa-arrow-left"></i>
+                                        Alışverişe Devam Et
                                     </a>
                                 </td>
-                                <td class="table-content-center"></td>
-                                <td class="table-content-center">Toplam: @Model.TotalPrice TL</td>
                                 <td class="table-content-center">
-                                    <a href="" class="btn btn-success">
-                                        <i class="fa fa-check-square-o"></i> Siparişi Tamamla
-                                    </a>
+                                    Toplam: @Model.TotalPrice TL
+                                </td>
+                                <td class="table-content-center">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa fa-check-square-o"></i>
+                                        Siparişi Tamamla
+                                    </button>
                                 </td>
                             </tr>
-                        }
-                        else
-                        {
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <table class="table table-bordered">
+                        <tbody>
                             <tr>
                                 <td class="table-content-center">
                                     <a href="/Product/List" class="btn btn-primary">
-                                        <i class="fa fa-arrow-left"></i> Alışverişe Devam Et
+                                        <i class="fa fa-arrow-left"></i>
+                                        Alışverişe Devam Et
                                     </a>
                                 </td>
                                 <td class="table-content-center">
@@ -69,13 +92,15 @@
                                 </td>
                                 <td class="table-content-center">
                                     <a href="" class="btn btn-secondary disabled">
-                                        <i class="fa fa-check-square-o"></i> Siparişi Tamamla
+                                        <i class="fa fa-check-square-o"></i>
+                                        Siparişi Tamamla
                                     </a>
                                 </td>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                }
+                <input type="hidden" name="TotalPrice" value="@Model.TotalPrice">
             </form>
         </div>
     </div>
