@@ -1,4 +1,4 @@
-﻿@model List<OrderDetail>
+﻿@model OrderDetailsVM
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,32 +6,55 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <table class="table">
+            <h4 class="text-center">Sipariş Detayları</h4>
+            <table class="table table-bordered">
                 <tbody>
-                    @foreach (var product in Model)
+                    <tr>
+                        <td class="table-content-center">
+                            Sipariş Tarihi : @Model.OrderDate
+                        </td>
+                        <td class="table-content-center">
+                            Sipariş Tutarı : @Model.OrderPrice
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="table-content-center" scope="col">
+                            Ürün Resmi
+                        </th>
+                        <th class="table-content-center" scope="col">
+                            Ürün Adı
+                        </th>
+                        <th class="table-content-center" scope="col">
+                            Ürün Fiyatı
+                        </th>
+                        <th class="table-content-center" scope="col">
+                            Ürün Adedi
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var detail in Model.OrderDetails)
                     {
-                        string src = "/images/" + product.Product.ProductCode + ".png";
+                        string src = "/images/" + detail.Product.ProductCode + ".png";
                         <tr>
                             <td class="table-content-center">
                                 <img class="img-thumbnail" src="@src" height="150" width="150" />
                             </td>
                             <td class="table-content-center">
-                                @product.Product.ProductName
+                                @detail.Product.ProductName
                             </td>
                             <td class="table-content-center">
-                                @product.Product.ProductPrice
+                                @detail.Product.ProductPrice
                             </td>
                             <td class="table-content-center">
-                                @product.Quantity
+                                @detail.Quantity
                             </td>
                         </tr>
                     }
-                    <tr>
-                        <td class="table-content-center"></td>
-                        <td class="table-content-center"></td>
-                        <td class="table-content-center"></td>
-                        <td class="table-content-center"></td>
-                    </tr>
                 </tbody>
             </table>
         </div>

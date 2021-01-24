@@ -1,14 +1,13 @@
-﻿using ShoppingApp.EntitiesLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShoppingApp.PresentationLayer.Models
 {
-    public class CardVM
+    public class CartToOrderVM
     {
-        public List<Product> Products { get; set; }
+        public List<Guid> ProductIDs { get; set; }
         public decimal TotalPrice { get; set; }
     }
 }

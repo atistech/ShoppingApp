@@ -17,9 +17,7 @@ namespace ShoppingApp.BusinessLogicLayer
         
         public List<OrderDetail> GetOrderDetailsByOrderID(Guid id)
         {
-            List<OrderDetail> list = new List<OrderDetail>();
-            list = _orderDetailDAL.GetDefault(d => d.OrderID == id );
-            return list;
+            return _orderDetailDAL.GetDefault(d => d.OrderID == id );
         }
     }
 }

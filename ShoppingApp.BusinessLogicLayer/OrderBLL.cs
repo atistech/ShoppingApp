@@ -19,5 +19,10 @@ namespace ShoppingApp.BusinessLogicLayer
         {
             return _orderDAL.GetDefault(o => o.UserID == id);
         }
+
+        public Order GetOrderByID(Guid id)
+        {
+            return _orderDAL.GetByID(id);
+        }
     }
 }

@@ -21,14 +21,29 @@ namespace ShoppingApp.PresentationLayer.Controllers
             return View(_orderBLL.GetOrdersByUserID(id));
         }
 
-        /*public IActionResult AddOrder()
+        [HttpPost]
+        public IActionResult AddOrder(CartToOrderVM vm)
         {
-
-        }*/
+            //_orderBLL.
+            return RedirectToAction("Cart", "Cart");
+        }
 
         public IActionResult OrderDetails(Guid id)
         {
-            return View(_orderDetailBLL.GetOrderDetailsByOrderID(id));
+            OrderDetailsVM vm = new OrderDetailsVM();
+            Order order = _orderBLL.GetOrderByID(id);
+            List<OrderDetail> list = _orderDetailBLL
+                .GetOrderDetailsByOrderID(id);
+            foreach (var item in list)
+            {
+                item.Product = _productBLL.GetProductByID(item.ProductID);
+            }
+            vm.OrderDetails = list;
+            vm.OrderDate = order.OrderDate.Day
+                + "/" + order.OrderDate.Month
+                + "/" + order.OrderDate.Year;
+            vm.OrderPrice = order.OrderPrice;
+            return View(vm);
         }
     }
 }

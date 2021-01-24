@@ -14,16 +14,15 @@ namespace ShoppingApp.PresentationLayer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private CategoryBLL categoryBLL = new CategoryBLL();
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult SeedSampleData()
         {
-            return View(categoryBLL.GetAllCategories());
+            SeedSampleData data = new SeedSampleData();
+            return Json(new { result = "Data loaded." } );
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

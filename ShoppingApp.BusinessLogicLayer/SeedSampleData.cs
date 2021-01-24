@@ -76,23 +76,23 @@ namespace ShoppingApp.BusinessLogicLayer
             order1.OrderDate = new DateTime(2021, 1, 18);
             order1.UserID = user1.ID;
             order1.User = user1;
-            order1.OrderPrice = 4500;
+            order1.OrderPrice = 9000;
             #endregion
 
             #region Sample OrderDetail Data
             OrderDetail[] order_details = new OrderDetail[3];
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 order_details[i] = new OrderDetail()
                 {
                     ID = Guid.NewGuid(),
                     Status = Status.Active,
-                    OrderPrice = 2 * products[0].ProductPrice,
+                    OrderPrice = 2 * products[i].ProductPrice,
                     Quantity = 2,
                     OrderID = order1.ID,
                     Order = order1,
-                    ProductID = products[0].ID,
-                    Product = products[0]
+                    ProductID = products[i].ID,
+                    Product = products[i]
                 };
             }
             #endregion

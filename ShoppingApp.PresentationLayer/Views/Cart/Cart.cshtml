@@ -1,4 +1,4 @@
-﻿@model CardVM
+﻿@model CartVM
 @{
     ViewData["Title"] = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,69 +7,76 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <table class="table">
-                <tbody>
-                    @foreach (var product in Model.Products)
-                    {
-                        string src = "/images/" + product.ProductCode + ".png";
-                        <tr>
-                            <td class="table-content-center">
-                                <img class="img-thumbnail" src="@src" height="150" width="150" />
-                            </td>
-                            <td class="table-content-center">
-                                @product.ProductName
-                            </td>
-                            <td class="table-content-center">
-                                @product.ProductPrice
-                            </td>
-                            <td class="table-content-center">
-                                <a href="/Cart/RemoveFromCart/@product.ID" class="btn btn-danger">
-                                    <i class="fa fa-trash-o"></i> Sepetten Çıkar
-                                </a>
-                            </td>
-                        </tr>
-                    }
+            <form>
+                <table class="table">
+                    <tbody>
+                        @foreach (var product in Model.Products)
+                        {
+                            string src = "/images/" + product.ProductCode + ".png";
+                            <tr>
+                                <td class="table-content-center">
+                                    <img class="img-thumbnail" src="@src"
+                                         height="150" width="150" />
+                                </td>
+                                <td class="table-content-center">
+                                    @product.ProductName
+                                </td>
+                                <td class="table-content-center">
+                                    @product.ProductPrice
+                                </td>
+                                <td class="table-content-center">
+                                    <a href="/Cart/RemoveFromCart/@product.ID"
+                                       class="btn btn-danger">
+                                        <i class="fa fa-trash-o"></i>
+                                        Sepetten Çıkar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
 
-                    @if (User.Identity.Name != null)
-                    {
-                        <tr>
-                            <td class="table-content-center">
-                                <a href="/Product/List" class="btn btn-primary">
-                                    <i class="fa fa-arrow-left"></i> Alışverişe Devam Et
-                                </a>
-                            </td>
-                            <td class="table-content-center"></td>
-                            <td class="table-content-center">Toplam: @Model.TotalPrice TL</td>
-                            <td class="table-content-center">
-                                <a href="" class="btn btn-success">
-                                    <i class="fa fa-check-square-o"></i> Siparişi Tamamla
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                    else
-                    {
-                        <tr>
-                            <td class="table-content-center">
-                                <a href="/Product/List" class="btn btn-primary">
-                                    <i class="fa fa-arrow-left"></i> Alışverişe Devam Et
-                                </a>
-                            </td>
-                            <td class="table-content-center">
-                                <h5 class="text-danger">
-                                    Üye olmadan sipariş verilememektedir.
-                                </h5>
-                            </td>
-                            <td class="table-content-center">Toplam: @Model.TotalPrice TL</td>
-                            <td class="table-content-center">
-                                <a href="" class="btn btn-secondary disabled">
-                                    <i class="fa fa-check-square-o"></i> Siparişi Tamamla
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                        @if (User.Identity.Name != null)
+                        {
+                            <tr>
+                                <td class="table-content-center">
+                                    <a href="/Product/List" class="btn btn-primary">
+                                        <i class="fa fa-arrow-left"></i> Alışverişe Devam Et
+                                    </a>
+                                </td>
+                                <td class="table-content-center"></td>
+                                <td class="table-content-center">Toplam: @Model.TotalPrice TL</td>
+                                <td class="table-content-center">
+                                    <a href="" class="btn btn-success">
+                                        <i class="fa fa-check-square-o"></i> Siparişi Tamamla
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td class="table-content-center">
+                                    <a href="/Product/List" class="btn btn-primary">
+                                        <i class="fa fa-arrow-left"></i> Alışverişe Devam Et
+                                    </a>
+                                </td>
+                                <td class="table-content-center">
+                                    <h5 class="text-danger">
+                                        Üye olmadan sipariş verilememektedir.
+                                    </h5>
+                                </td>
+                                <td class="table-content-center">
+                                    Toplam: @Model.TotalPrice TL
+                                </td>
+                                <td class="table-content-center">
+                                    <a href="" class="btn btn-secondary disabled">
+                                        <i class="fa fa-check-square-o"></i> Siparişi Tamamla
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>

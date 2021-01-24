@@ -16,7 +16,7 @@ namespace ShoppingApp.PresentationLayer.Controllers
         [HttpGet]
         public IActionResult Cart()
         {
-            CardVM vm = new CardVM();
+            CartVM vm = new CartVM();
             List<Product> list = new List<Product>();
             foreach (var item in Request.Cookies)
             {

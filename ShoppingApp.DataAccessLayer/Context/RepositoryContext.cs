@@ -44,8 +44,14 @@ namespace ShoppingApp.DataAccessLayer.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //Local Host Database
             optionsBuilder
                 .UseSqlServer("Server=.\\SQLExpress;Database=ShoppingApp;Trusted_Connection=True;");
+
+            //Remote Host Database
+            /*optionsBuilder
+                .UseSqlServer("workstation id=ShoppingAppDB.mssql.somee.com;packet size=4096;user id=blue333_SQLLogin_1;pwd=7ej6s5jgb1;data source=ShoppingAppDB.mssql.somee.com;persist security info=False;initial catalog=ShoppingAppDB");
+            */
         }
 
         public override int SaveChanges()
