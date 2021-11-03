@@ -1,3 +1,5 @@
+https://youtu.be/rb9ykk01F3I
+
 # ShoppingApp
 Microsoft SQL Server, Entity Framework Core, .NET Core, ASP.NET Core MVC, Bootstrap, JQuery
 
